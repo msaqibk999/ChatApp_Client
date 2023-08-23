@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Preahvihear:wght@300;400;500;700&display=swap');
+
+.mainContainer{
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.chatHeading{
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'Preahvihear', sans-serif;
+    position: relative;
+    top: -100px; 
+    opacity: 0; 
+    animation: dropHeading 1s forwards;
+}
+@keyframes dropHeading {
+    from {
+      top: -100px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+.logoContainer{
+    height: 160px;
+}
+.logoImg {
+    width: 0;
+    height: 0;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: growImage 1s forwards;
+  }
+  
+  @keyframes growImage {
+    from {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      width: 150px;
+      height: 150px;
+      opacity: 1;
+    }
+  }
+.loaderContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #01a486;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+    margin: 5rem auto;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+.chatContainer{
+    border: 2px solid black;
+    margin-top: 2rem;
+    width: 80%;
+    max-width: 50rem;
+    height: 35rem;
+    position: relative;
+    background-image: url("https://e1.pxfuel.com/desktop-wallpaper/461/478/desktop-wallpaper-whatsapp-dark-whatsapp-chat.jpg");
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.messageContainer{
+    border-top: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.5rem;
+}
+.messageInput{
+    border: none;
+    color: white;
+    background-color: rgb(12, 129, 111);
+    flex: 0 0 85%;
+    max-width: 85%;
+    height: 90%;
+    font-size: 1.3rem;
+    padding: 0rem 0.4rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.messageInput::placeholder {
+    color: white;
+  }
+.messageInput:hover {
+    background-color: rgb(12, 101, 88);; /* Change background color on hover */
+}
+
+.sendButton{
+    border: none;
+    flex: 1;
+    height: 90%;
+    font-size: 1.4rem;
+    background-color: crimson;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+.sendButton:hover {
+    background-color: #900202; /* Change background color on hover */
+  }
+  
+  .sendButton:active {
+    background-color: #5b0404; /* Change background color when clicked */
+  }
+.prevMessagesContainer{
+    margin-top: 0.5rem;
+    height: 30rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.prevMessages {
+    display: flex;
+    flex-direction: column;
+}
+
+.messageBody {
+    margin: 1rem 1rem 0rem 1rem;
+    background-color: rgb(3, 133, 105);
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    max-width: 25rem;
+    padding: 0.5rem;
+}
+
+.alignLeft .messageBody {
+    align-self: flex-start;
+    background-color: rgb(0, 112, 118);
+    animation: slideInFromLeft 0.5s ease-in-out forwards;
+}
+
+.alignRight .messageBody {
+    align-self: flex-end;
+    animation: slideInFromRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.sender{
+    font-size: 0.8rem;
+}
+.message{
+    margin-top: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0rem 0.5rem;
+}
+.messageTime{
+    margin-top: 0.2rem;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.noMessage{
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+}
+@media screen and (max-width: 600px) {
+    .mainContainer{
+        margin-top: 2rem;
+    }
+    .messageBody{
+        max-width: 12rem;
+    }
+    .messageInput, .sendButton{
+        font-size: 1.2rem;
+    }
+    .message{
+        font-size: 1.05rem;
+    }
+    .messageInput{
+        flex: 1; 
+        max-width: 80%;
+        font-size: 1.1rem;
+    }
+    .sendButton{
+        max-width: 4rem;
+    }
+    .noMessage{
+        font-size: 1.3rem;
+    }
+    .messageContainer{
+        height: 3rem;
+    }
+}
