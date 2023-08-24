@@ -24,10 +24,12 @@ export const messaging = getMessaging(app);
 export const requestPermission = () => {
   Notification.requestPermission().then( permission => {
     if(permission === "granted"){
+      console.log("permission granted");
       return getToken(messaging, {
         vapidKey: "BGj7VA54IsYMuUcrXIYa5PKNXZXOvVcEWtfdJ3SdUgknVvAxVX2cjT8U7PA6-ZOvoUayawZ8lsbstUg0rk1mY54"
       })
       .then( currentToken => {
+        console.log("token = " + currentToken);
         if(currentToken){
           fetch("https://chatappserver1.onrender.com/users/update_token", {
             method: 'PATCH',
