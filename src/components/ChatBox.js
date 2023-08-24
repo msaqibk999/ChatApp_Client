@@ -21,7 +21,7 @@ export default function ChatBox() {
         if(me && me.length === 10) {
             setMe(me);
             fetchMessages();
-            requestPermission();
+            // requestPermission();
         }
         else {
             setTimeout(() => {
