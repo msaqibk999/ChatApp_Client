@@ -16,10 +16,10 @@ export default function ChatBox() {
     const messagesUrl = "https://chatappserver1.onrender.com/messages";
     
     //  const messagesUrl = "http://localhost:4000/messages"
-    const setMessagesAndScrollDown = (data) => {
+    const setMessagesAndScrollDown = useCallback((data) => {
         setMessages(data);
         resetAndScroll();
-    }
+    },[])
 
     const fetchMessages = useCallback(async () => {
         const response = await fetch(messagesUrl);
