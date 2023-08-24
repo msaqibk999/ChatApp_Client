@@ -20,8 +20,8 @@ export default function ChatBox() {
         const me = localStorage.getItem('myPhoneNumber')
         if(me && me.length === 10) {
             setMe(me);
-            requestPermission();
             fetchMessages();
+            requestPermission();
         }
         else {
             setTimeout(() => {
