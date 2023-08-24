@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useRef} from 'react'
+import React,{useState, useEffect, useRef, useCallback} from 'react'
 import styles from '../cssModules/ChatBox.module.css'
 import LoginModal from './LoginModal';
 import { requestPermission } from '../firebase';
@@ -13,9 +13,23 @@ export default function ChatBox() {
     const [loading, setLoading] = useState(true);
     const messagesContainerRef = useRef();
 
-     const messagesUrl = "https://chatappserver1.onrender.com/messages";
+    const messagesUrl = "https://chatappserver1.onrender.com/messages";
+    
     //  const messagesUrl = "http://localhost:4000/messages"
+    const setMessagesAndScrollDown = (data) => {
+        setMessages(data);
+        resetAndScroll();
+    }
 
+    const fetchMessages = useCallback(async () => {
+        const response = await fetch(messagesUrl);
+        const data = await response.json();
+        setMessagesAndScrollDown(data);
+        setTimeout(() => {
+          setLoading(false);
+          requestPermission();
+        }, 1300);
+      }, [setMessagesAndScrollDown]);
 
     useEffect( ()=> {
         const me = localStorage.getItem('myPhoneNumber')
@@ -28,30 +42,15 @@ export default function ChatBox() {
                 setLoading(false);
             }, 1300);
         }
-    },[])
+    },[fetchMessages])
 
     useEffect( () => {
         resetAndScroll();
     },[messages, loading])
 
-    const fetchMessages = async() => {
-        const response = await fetch(messagesUrl);
-        const data = await response.json();
-        setMessagesAndScrollDown(data);
-        setTimeout(() => {
-            setLoading(false);
-            requestPermission();
-        }, 1300);
-    }
-
     const pull_data = (data) => {
         setMe(data);
         fetchMessages();
-    }
-
-    const setMessagesAndScrollDown = (data) => {
-        setMessages(data);
-        resetAndScroll();
     }
 
     const resetAndScroll = () => {
