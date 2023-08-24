@@ -14,20 +14,26 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.0/umd/react-dom.production.min.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("%PUBLIC_URL%/firebase-messaging-sw.js")
-            .then((reg) => {
-              console.log("Success hahhahaha", reg.scope);
-            })
-            .catch((err) => {
-              console.log("Error", err);
-            });
-        });
-      }
-    </script>
+    <!-- Load React library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.6.0/umd/react.production.min.js"></script>
+<!-- Load ReactDOM library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.0/umd/react-dom.production.min.js"></script>
+
+<!-- ... other script tags ... -->
+
+<script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("https://raw.githubusercontent.com/msaqibk999/ChatApp_Client/main/public/firebase-messaging-sw.js")
+          .then((reg) => {
+            console.log("Service Worker registration successful", reg.scope);
+          })
+          .catch((err) => {
+            console.error("Service Worker registration failed", err);
+          });
+      });
+    }
+  </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
