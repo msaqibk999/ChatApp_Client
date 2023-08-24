@@ -35,7 +35,9 @@ export default function LoginModal( props ) {
       localStorage.setItem('myPhoneNumber', input);
       if(localStorage.getItem('myPhoneNumber')) props.func(input);
       closeModal();
-      requestPermission();
+      setTimeout(() => {
+        requestPermission();
+      }, 1300);
     } 
     else {
       console.error('Error:', response.statusText);

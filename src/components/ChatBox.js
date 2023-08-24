@@ -21,7 +21,6 @@ export default function ChatBox() {
         if(me && me.length === 10) {
             setMe(me);
             fetchMessages();
-            // requestPermission();
         }
         else {
             setTimeout(() => {
@@ -40,6 +39,7 @@ export default function ChatBox() {
         setMessagesAndScrollDown(data);
         setTimeout(() => {
             setLoading(false);
+            requestPermission();
         }, 1300);
     }
 
