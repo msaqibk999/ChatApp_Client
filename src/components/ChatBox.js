@@ -4,7 +4,7 @@ import LoginModal from './LoginModal';
 import { requestPermission } from '../firebase';
 
  const ws = new WebSocket("wss://chatappserver1.onrender.com/cable");
-
+    // const ws = new WebSocket("ws://localhost:4000/cable")
 
 export default function ChatBox() {
     const [messages, setMessages] = useState([]);
@@ -14,6 +14,7 @@ export default function ChatBox() {
     const messagesContainerRef = useRef();
 
      const messagesUrl = "https://chatappserver1.onrender.com/messages";
+    //  const messagesUrl = "http://localhost:4000/messages"
 
 
     useEffect( ()=> {
