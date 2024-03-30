@@ -29,6 +29,7 @@ export default function ChatBox() {
           setLoading(false);
           requestPermission();
         }, 1300);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [setMessagesAndScrollDown]);
 
     useEffect( ()=> {
