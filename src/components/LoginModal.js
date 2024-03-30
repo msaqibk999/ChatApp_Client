@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from '../cssModules/LoginModal.module.css'
 import { requestPermission } from "../firebase";
 
+const serverUrl = process.env.REACT_APP_SERVER;
+
 export default function LoginModal( props ) {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
@@ -21,7 +23,7 @@ export default function LoginModal( props ) {
         return;
     }
 
-    const response = await fetch( "https://chatappserver1.onrender.com/login" , {
+    const response = await fetch( serverUrl + "/login" , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

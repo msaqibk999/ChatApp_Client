@@ -3,8 +3,9 @@ import styles from '../cssModules/ChatBox.module.css'
 import LoginModal from './LoginModal';
 import { requestPermission } from '../firebase';
 
- const ws = new WebSocket("wss://chatappserver1.onrender.com/cable");
-    // const ws = new WebSocket("ws://localhost:4000/cable")
+const serverUrl = process.env.REACT_APP_SERVER;
+const webs = process.env.REACT_APP_SOCKET;
+const ws = new WebSocket(webs);
 
 export default function ChatBox() {
     const [messages, setMessages] = useState([]);
@@ -13,9 +14,8 @@ export default function ChatBox() {
     const [loading, setLoading] = useState(true);
     const messagesContainerRef = useRef();
 
-    const messagesUrl = "https://chatappserver1.onrender.com/messages";
+    const messagesUrl = serverUrl +  "/messages";
     
-    //  const messagesUrl = "http://localhost:4000/messages"
     const setMessagesAndScrollDown = useCallback((data) => {
         setMessages(data);
         resetAndScroll();
@@ -70,7 +70,7 @@ export default function ChatBox() {
     }
 
     ws.onopen = () => {
-        console.log("connected to websocket server");
+        console.log("connected to webserver");
         setGuid(Math.random().toString(36).substring(2,15));
 
         ws.send(
@@ -92,9 +92,6 @@ export default function ChatBox() {
 
         const message = data.message;
         setMessagesAndScrollDown([ ...messages, message]);
-        if (Notification.permission === "granted" && document.visibilityState !== "visible" && message.sender !== me) {
-            
-          }
     }
 
     const handleKeyPress = (event) => {
