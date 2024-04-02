@@ -24,11 +24,11 @@ export default function ChatBox() {
     const fetchMessages = useCallback(async () => {
         const response = await fetch(messagesUrl);
         const data = await response.json();
+        requestPermission();
         setMessagesAndScrollDown(data);
         setTimeout(() => {
-          setLoading(true);
-          requestPermission();
-        }, 1300);
+          setLoading(false);
+        }, 1000);
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [setMessagesAndScrollDown]);
 
@@ -40,8 +40,8 @@ export default function ChatBox() {
         }
         else {
             setTimeout(() => {
-                setLoading(true);
-            }, 1300);
+                setLoading(false);
+            }, 1000);
         }
     },[fetchMessages])
 
