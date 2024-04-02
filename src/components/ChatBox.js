@@ -26,7 +26,7 @@ export default function ChatBox() {
         const data = await response.json();
         setMessagesAndScrollDown(data);
         setTimeout(() => {
-          setLoading(false);
+          setLoading(true);
           requestPermission();
         }, 1300);
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,7 +40,7 @@ export default function ChatBox() {
         }
         else {
             setTimeout(() => {
-                setLoading(false);
+                setLoading(true);
             }, 1300);
         }
     },[fetchMessages])
